@@ -3,13 +3,14 @@ from configparser import ConfigParser
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
+print(BASE_DIR)
 
 # Configparser reading for getting .env variabesl.
 if not os.path.exists(os.path.join(BASE_DIR, 'settings.ini')):
     raise FileNotFoundError('Configuration file "settings.ini" not found.')
 
 config = ConfigParser()
-config.read('settings.ini')
+config.read(os.path.join(BASE_DIR, 'settings.ini'))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
