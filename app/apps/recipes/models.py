@@ -72,13 +72,26 @@ class Action(models.Model):
         ))
 
 
+class Step(models.Model):
+    number = models.IntegerField(verbose_name='number')
+    action = models.ForeignKey(
+        Action, on_delete=models.CASCADE, verbose_name='step')
+
+    class Meta:
+        verbose_name = 'step'
+        verbose_name_plural = 'steps'
+
+    def __str__(self) -> str:
+        return f'{self.number}. {self.action}'
+
+
 class Recipe(models.Model):
     name = models.CharField(max_length=255, verbose_name='name')
-    actions = models.ManyToManyField(Action, verbose_name='actions')
+    steps = models.ManyToManyField(Step, verbose_name='steps')
 
     class Meta:
         verbose_name = 'recipe'
         verbose_name_plural = 'recipes'
 
     def __str__(self) -> str:
-        return ''.join(str(action) for action in self.actions.all())
+        return ''.join(str(step) for step in self.steps.order_by('number'))
