@@ -50,6 +50,9 @@ class Action(models.Model):
         Ingredient, verbose_name='ingredients',
         related_name='ingredients')
 
+    attributes = models.ManyToManyField(
+        Attribute, verbose_name='attributes')
+
     product = models.ForeignKey(
         Ingredient, on_delete=models.CASCADE, verbose_name='product',
         related_name='product')
