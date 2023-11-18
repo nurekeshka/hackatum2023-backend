@@ -14,7 +14,14 @@ class PreferenceAdmin(admin.ModelAdmin):
     list_display = ('name',)
 
 
+@admin.register(models.Facility)
+class FacilityAdmin(admin.ModelAdmin):
+    fields = ('name', 'image')
+    list_display = ('name', 'image')
+
+
 @admin.register(models.Ingredient)
 class IngredientAdmin(admin.ModelAdmin):
-    fields = ('name', ('categories', 'preferences'), 'instance_of', 'image')
-    list_display = ('name', 'instance_of', 'image')
+    fields = ('name', ('categories', 'preferences'),
+              'instance_of', ('quantity', 'unit'), 'image')
+    list_display = ('name', 'instance_of', 'quantity', 'unit', 'image')
