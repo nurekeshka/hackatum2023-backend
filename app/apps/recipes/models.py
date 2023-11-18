@@ -1,4 +1,4 @@
-from apps.components.models import Ingredient
+from apps.components.models import Ingredient, Facility
 from apps.core.models import Image
 from django.db import models
 
@@ -18,6 +18,7 @@ class Parameter(models.Model):
 class Process(models.Model):
     name = models.CharField(max_length=255, verbose_name='name')
     parameters = models.ManyToManyField(Parameter, verbose_name='parameter')
+    facilities = models.ManyToManyField(Facility, verbose_name='facilities')
 
     image = models.ForeignKey(
         Image, on_delete=models.SET_NULL,
