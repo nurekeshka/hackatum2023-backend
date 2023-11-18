@@ -25,6 +25,16 @@ class Preference(models.Model):
 
 
 class Ingredient(models.Model):
+    MASS = 0
+    FLUID = 1
+    PIECE = 2
+
+    QUANTITY_UNITS = (
+        (MASS, 'gram'),
+        (FLUID, 'millilitre'),
+        (PIECE, 'piece')
+    )
+
     name = models.CharField(max_length=255, verbose_name='name')
     categories = models.ManyToManyField(Category, verbose_name='categories')
     preferences = models.ManyToManyField(Preference, verbose_name='preference')
@@ -33,6 +43,12 @@ class Ingredient(models.Model):
         'Ingredient', on_delete=models.CASCADE,
         null=True, blank=True,
         verbose_name='instance of')
+
+    quantity = models.FloatField(
+        verbose_name='quantity', null=True, blank=True)
+    unit = models.IntegerField(
+        default=None, choices=QUANTITY_UNITS,
+        null=True, blank=True, verbose_name='unit')
 
     image = models.ForeignKey(
         Image, on_delete=models.SET_NULL,
