@@ -10,7 +10,7 @@ class ParameterAdmin(admin.ModelAdmin):
 
 @admin.register(models.Process)
 class ProcessAdmin(admin.ModelAdmin):
-    fields = ('name', 'parameters', 'image')
+    fields = ('name', 'parameters', 'facilities', 'image')
     list_display = ('name', 'image')
 
 
