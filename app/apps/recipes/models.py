@@ -1,4 +1,8 @@
 from apps.components.models import Ingredient, Facility
+from django.db.models.signals import post_save
+from rest_framework.authtoken.models import Token
+from django.contrib.auth.models import User
+from django.dispatch import receiver
 from apps.core.models import Image
 from django.db import models
 
@@ -89,6 +93,10 @@ class Step(models.Model):
 class Recipe(models.Model):
     name = models.CharField(max_length=255, verbose_name='name')
     steps = models.ManyToManyField(Step, verbose_name='steps')
+    author = models.ForeignKey(
+        User, on_delete=models.CASCADE,
+        null=True, blank=True,
+        verbose_name='author')
 
     class Meta:
         verbose_name = 'recipe'
@@ -96,3 +104,9 @@ class Recipe(models.Model):
 
     def __str__(self) -> str:
         return ''.join(str(step) for step in self.steps.order_by('number'))
+
+
+@receiver(post_save, sender=User)
+def create_auth_token(sender, instance=None, created=False, **kwargs):
+    if created:
+        Token.objects.create(user=instance)
