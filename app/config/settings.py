@@ -38,6 +38,10 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
     'corsheaders',
+
+    'apps.core.apps.CoreConfig',
+    'apps.components.apps.ComponentsConfig',
+    'apps.recipes.apps.RecipesConfig',
 ]
 
 MIDDLEWARE = [
