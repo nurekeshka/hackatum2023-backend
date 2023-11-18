@@ -30,7 +30,9 @@ class Ingredient(models.Model):
     preferences = models.ManyToManyField(Preference, verbose_name='preference')
 
     instance_of = models.ForeignKey(
-        'Ingredient', on_delete=models.CASCADE, verbose_name='instance of')
+        'Ingredient', on_delete=models.CASCADE,
+        null=True, blank=True,
+        verbose_name='instance of')
 
     image = models.ForeignKey(
         Image, on_delete=models.SET_NULL,
