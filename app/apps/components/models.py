@@ -5,12 +5,20 @@ from django.db import models
 class Category(models.Model):
     name = models.CharField(max_length=255, verbose_name='name')
 
+    class Meta:
+        verbose_name = 'category'
+        verbose_name_plural = 'categories'
+
     def __str__(self) -> str:
         return str(self.name)
 
 
 class Preference(models.Model):
     name = models.CharField(max_length=255, verbose_name='name')
+
+    class Meta:
+        verbose_name = 'preference'
+        verbose_name_plural = 'preferences'
 
     def __str__(self) -> str:
         return str(self.name)
