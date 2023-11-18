@@ -1,5 +1,6 @@
 from apps.components.models import Ingredient
 from apps.core.models import Image
+from django.contrib.auth.models import User
 from django.db import models
 
 
@@ -46,6 +47,10 @@ class Action(models.Model):
 class Recipe(models.Model):
     name = models.CharField(max_length=255, verbose_name='name')
     actions = models.ManyToManyField(Action, verbose_name='actions')
+    author = models.ForeignKey(
+        User, on_delete=models.SET_NULL,
+        null=True, blank=True,
+        verbose_name='author')
 
     class Meta:
         verbose_name = 'recipe'

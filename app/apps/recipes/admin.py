@@ -16,5 +16,5 @@ class ActionAdmin(admin.ModelAdmin):
 
 @admin.register(models.Recipe)
 class RecipeAdmin(admin.ModelAdmin):
-    fields = ('name', 'actions')
-    list_display = ('name',)
+    fields = ('name', 'actions', 'author')
+    list_display = ('name', 'author')
