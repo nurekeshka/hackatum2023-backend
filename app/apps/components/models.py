@@ -24,6 +24,20 @@ class Preference(models.Model):
         return str(self.name)
 
 
+class Facility(models.Model):
+    name = models.CharField(max_length=255, verbose_name='name')
+    image = models.ForeignKey(
+        Image, on_delete=models.SET_NULL,
+        null=True, blank=True, verbose_name='image')
+
+    class Meta:
+        verbose_name = 'facility'
+        verbose_name_plural = 'facilities'
+
+    def __str__(self) -> str:
+        return str(self.name)
+
+
 class Ingredient(models.Model):
     MASS = 0
     FLUID = 1
