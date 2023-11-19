@@ -67,7 +67,7 @@ function doAjaxSubmit(e) {
       contentType = false;
       data = new FormData(form[0]);
     } else {
-      contentType = 'application/x-www-form-urlencoded; charset=UTF-8'
+      contentType = 'component/x-www-form-urlencoded; charset=UTF-8'
       data = form.serialize();
     }
   }

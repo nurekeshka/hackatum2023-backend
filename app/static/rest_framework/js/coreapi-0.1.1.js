@@ -321,7 +321,7 @@ function primitiveToNode(data, baseUrl) {
       var field = new document.Field(name, required, location, fieldDescription);
       fields.push(field);
     }
-    return new document.Link(_url, method, 'application/json', fields, _title, _description);
+    return new document.Link(_url, method, 'component/json', fields, _title, _description);
   } else if (isObject) {
     // Object
     var _content = {};
@@ -347,7 +347,7 @@ var CoreJSONCodec = function () {
   function CoreJSONCodec() {
     _classCallCheck(this, CoreJSONCodec);
 
-    this.mediaType = 'application/coreapi+json';
+    this.mediaType = 'component/coreapi+json';
   }
 
   _createClass(CoreJSONCodec, [{
@@ -394,7 +394,7 @@ var JSONCodec = function () {
   function JSONCodec() {
     _classCallCheck(this, JSONCodec);
 
-    this.mediaType = 'application/json';
+    this.mediaType = 'component/json';
   }
 
   _createClass(JSONCodec, [{
@@ -463,7 +463,7 @@ var Document = function Document() {
 };
 
 var Link = function Link(url, method) {
-  var encoding = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 'application/json';
+  var encoding = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 'component/json';
   var fields = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : [];
   var title = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : '';
   var description = arguments.length > 5 && arguments[5] !== undefined ? arguments[5] : '';
@@ -688,9 +688,9 @@ var HTTPTransport = function () {
       Object.assign(requestOptions.headers, this.headers);
 
       if (hasBody) {
-        if (link.encoding === 'application/json') {
+        if (link.encoding === 'component/json') {
           requestOptions.body = JSON.stringify(formParams);
-          requestOptions.headers['Content-Type'] = 'application/json';
+          requestOptions.headers['Content-Type'] = 'component/json';
         } else if (link.encoding === 'multipart/form-data') {
           var form = new this.FormData();
 
@@ -698,7 +698,7 @@ var HTTPTransport = function () {
             form.append(paramKey, formParams[paramKey]);
           }
           requestOptions.body = form;
-        } else if (link.encoding === 'application/x-www-form-urlencoded') {
+        } else if (link.encoding === 'component/x-www-form-urlencoded') {
           var formBody = [];
           for (var _paramKey in formParams) {
             var encodedKey = encodeURIComponent(_paramKey);
@@ -708,7 +708,7 @@ var HTTPTransport = function () {
           formBody = formBody.join('&');
 
           requestOptions.body = formBody;
-          requestOptions.headers['Content-Type'] = 'application/x-www-form-urlencoded';
+          requestOptions.headers['Content-Type'] = 'component/x-www-form-urlencoded';
         }
       }
 
@@ -1806,7 +1806,7 @@ module.exports = function lolcation(loc) {
         } else if (this._bodyBlob && this._bodyBlob.type) {
           this.headers.set('content-type', this._bodyBlob.type)
         } else if (support.searchParams && URLSearchParams.prototype.isPrototypeOf(body)) {
-          this.headers.set('content-type', 'application/x-www-form-urlencoded;charset=UTF-8')
+          this.headers.set('content-type', 'component/x-www-form-urlencoded;charset=UTF-8')
         }
       }
     }
