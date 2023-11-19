@@ -1,0 +1,27 @@
+GET http://localhost:8000/user/profile
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2023-11-19T044000.404.html
+
+###
+
+GET http://localhost:8000/profile/
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2023-11-19T043937.404.html
+
+###
+
+GET http://localhost:8000/user/profile
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2023-11-19T043654.404.html
+
+###
+
